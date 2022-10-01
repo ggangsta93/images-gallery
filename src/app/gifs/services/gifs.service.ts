@@ -10,11 +10,16 @@ export class GifsService {
   get historial() {
     return [...this._historial];
   }
-
-  buscarGifs(valor: string) {
-    this._historial.unshift(valor);
+  
+  buscarGifs(valor: string='') {
+    valor = valor.trim().toLocaleLowerCase();
+    
+    if(!this._historial.includes(valor)){
+      this._historial.unshift(valor);
+      this._historial= this._historial.splice(0,10);
+    }
     console.log(this._historial);
   }
-  
+
   constructor() { }
 }
