@@ -1,3 +1,14 @@
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem pariatur recusandae ipsa reprehenderit
-qui,
-illo mollitia rerum ducimus autem quod enim sint non voluptas deserunt? Vel dicta quae quibusdam doloremque?
+<div class="d-flex">
+    <div *ngFor="let image of resultados">
+        <div class="card" style="width: 18rem;">
+            <img [src]="image.images.downsized.url" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{image.title}}</h5>
+                <p class="card-text">{{image.user.description}}</p>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
