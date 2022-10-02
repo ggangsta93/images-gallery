@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SearchImagesResponse } from '../interface/images.interface';
+import { SearchImagesResponse, Image } from '../interface/images.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +9,13 @@ export class GifsService {
 
   private apiKey: string = 'AvU6SBvL1MBI6SrA0JTyszQiRWzZKHKl';
   private _historial: string[] = [];
-  public resultados: any[]=[]
+  public resultados: Image[]=[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this._historial= JSON.parse(localStorage.getItem('historial')!) || [];
+    this.resultados= JSON.parse(localStorage.getItem('resultados')!) || [];
+
+  }
 
   get historial() {
     return [...this._historial];
@@ -23,6 +27,7 @@ export class GifsService {
     if (!this._historial.includes(valor)) {
       this._historial.unshift(valor);
       this._historial = this._historial.splice(0, 10);
+      localStorage.setItem('historial',JSON.stringify(this._historial));
     }
     //console.log(this._historial);
 
@@ -34,6 +39,8 @@ export class GifsService {
       .subscribe((respo) => {
         console.log(respo.data);
         this.resultados=respo.data;
+        localStorage.setItem('resultados',JSON.stringify(this.resultados));
+
       })
 
 

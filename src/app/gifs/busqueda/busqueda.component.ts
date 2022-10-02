@@ -9,7 +9,7 @@ import { GifsService } from '../services/gifs.service';
 })
 export class BusquedaComponent implements OnInit {
 
-  @ViewChild("txtBuscar") txtBuscar: ElementRef<HTMLInputElement>;
+  @ViewChild("txtBuscar") txtBuscar!: ElementRef<HTMLInputElement>;
 
   constructor(private gifsService: GifsService) { }
 
